@@ -14,24 +14,19 @@ def index(request):
 	return HttpResponse(output)
 	#return HttpResponse("Hello, World!")
 
-def detail(request, cid):
-	customer = Customers.objects.get(cid = 1)
-	output = customer.rid
-	return HttpResponse(output)
-	#return HttpResponse("You're looking at customer %d." % cid)
-
-
-
 def get_post(request):
     if request.method == 'GET':
         customer_id = request.GET['cid']
-	#customer = Customers.objects.get(cid=1)
+        customer = Customers.objects.get(cid=customer_id)
         data = {
-            'data': customer_id,
+            'num_team': customer_id,
+            'wait_time': "30",
         }
-        return render(request, 'apphome/parameter.html', data)
-	#return JsonResponse({"message":customer_information}, status=200)
-	#return JsonResponse({"message":data}, status=200)
+        #return render(request, 'apphome/parameter.html', data)
+        #return JsonResponse({"message":data}, status=200)
+        return JsonResponse(data)
+
+	
 
 
 class CustomerView(View):
