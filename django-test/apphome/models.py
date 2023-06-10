@@ -25,3 +25,11 @@ class Restaurants(models.Model):
     menu6 = models.CharField(max_length=20)
     menu7 = models.CharField(max_length=20)
     menu8 = models.CharField(max_length=20)
+
+class Inference(models.Model):
+    cid = models.IntegerField(default=0)
+    rid = models.IntegerField(default=0)
+    enter = models.BooleanField(default=False)
+    num_guest = models.IntegerField(default=0)
+    phone_number = models.CharField(max_length=20)
+    estimated_time = models.IntegerField(default=0)
