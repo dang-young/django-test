@@ -32,4 +32,5 @@ class Inference(models.Model):
     enter = models.BooleanField(default=False)
     num_guest = models.IntegerField(default=0)
     phone_number = models.CharField(max_length=20)
+    kakao_id = models.CharField(max_length=20)
     estimated_time = models.IntegerField(default=0)

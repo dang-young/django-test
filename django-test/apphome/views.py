@@ -11,6 +11,8 @@ from .models import Customers
 from .models import Restaurants
 from .models import Inference
 
+from .send_message import send_message
+
 # Create your views here.
 def index(request):
 	latest_customer_list = Customers.objects.order_by("cid")[:2]
@@ -36,10 +38,12 @@ def get_post_wait(request):
      # [WAIT] POST request
      else:
         data = json.loads(request.body)
+        name = data['name']
         people = data["people"]
         kakao = data["kakao"]
         infer_time = data["infer_time"]
         Inference.objects.create(num_guest=people, phone_number=kakao, estimated_time=infer_time)
+        send_message()
         return JsonResponse({'message': 'Data saved successfully.'})
          
 
